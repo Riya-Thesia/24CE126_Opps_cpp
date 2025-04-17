@@ -1,75 +1,151 @@
+/*A bank wants to create a simple system to manage customer bank accounts. The system should
+allow customers to perform basic banking operations such as depositing money, withdrawing
+money, and checking their account balance.
+Each bank account will need to have an account holder's name, a unique account number, and
+a balance. Deposits should increase the account balance, while withdrawals should only be
+allowed if there are sufficient funds in the account. If an attempt is made to withdraw more
+money than is available, an error message should be displayed. Customers should also have the
+ability to view their account balance whenever required.
+The system must be designed using Object-Oriented Programming principles, focusing on
+creating a simple and efficient solution to manage the accounts effectively. The system should
+ensure that all account details are secure and accessible only through authorized methods.*/
+
 #include<iostream>
 using namespace std;
-
-class BankAccount
+class  bank
 {
-    public:
-    string Name;
-    int Account_Number;
-    double Balance;
+public :
+    string name;
+    double anum;
+    float balance;
 
-
-void input()
-{
-    cout<<"Account Holder's Name:";
-    cin>>Name;
-
-    cout<<"Account Number:";
-    cin>>Account_Number;
-
-    Balance=0;
-
-}
-
-private:
-void deposit(double amount)
-{
-    Balance+=amount;
-    cout<<"Amount added successfully"<<endl;
-    cout<<"Update balance"<<endl;
-}
-
-void Withdraw(double amount)
-{
-    if(Balance<amount)
+    void deposit( )
     {
-       cout<<"Error:Balance is not sufficient"<<endl;
+        float bl;
+        cout << "Enter the amount you want to add :";
+        cin >> bl;
+        balance+=bl;
+
+        cout <<"You'r successfully add amount in your account."<<endl;
+        cout << "Your current balance is : "<<balance <<endl;
     }
-    else
-    {
-        Balance-=amount;
-        cout<<"Amount withdraw successfully"<<endl;
-        cout<<"Balance remaining"<<Balance;
-    }
-}
 
-public:
-    void display()
+    void withdraw(float x )
     {
-        deposit(5000);
-        Withdraw(100);
-        cout<<"Balance:"<<Balance;
+        balance -= x;
+        if(balance <0)
+        {
+            cout << "You have not enough amount for withdraw ."<<endl;
+        }
+        else
+        cout << "You'r successfully withdraw your amount ." << endl<<"Current balance is : "<<balance<<endl ;
+    }
+
+
+    void Balance ()
+    {
+        cout << "Your current balance is : "<<balance <<endl;
     }
 };
 
 int main()
 {
-    BankAccount B;
-    B.input();
-    B.display();
-    return 0;
+    int n,p=0;
+    double num,a;
+    short int c;
+    cout << "How many account you want to create : ";
+    cin >>n;
+    class bank b[n];
+
+    for(int i=0; i<n;i++)
+    {
+        cout <<"--------------------------------------------------------"<<endl;
+        cout <<i+1<<") Enter bank account holder name : ";
+        cin >>b[i].name;
+
+        cout <<i+1<<") Enter bank account number : ";
+        cin >>b[i].anum;
+
+        cout <<i+1<<") Enter bank account Balance : ";
+        cin >>b[i].balance;
+    }
+
+    x:
+        cout <<"--------------------------------------------------------"<<endl;
+        cout <<"Enter choice "<<endl<<"1) deposit "<<endl<<"2) withdraw"<<endl<<"3) check the balance"<<endl<<"4) exit "<<endl<< endl;
+        cout <<"Enter choice: ";
+        cin >>c;
+
+        cout <<"--------------------------------------------------------"<<endl;
+    switch(c)
+    {
+    case 1:
+        cout<<"Enter bank account number :";
+        cin >>num;
+
+        for(int i=0;i<n;i++)
+        {
+            if(b[i].anum==num)
+            {
+                p++;
+                b[i].deposit( );
+                break;
+            }
+        }
+        if(p==1)
+        {
+            cout<<"This account number has not available."<<endl;
+        }
+
+        p=0;
+        goto x;
+        break;
+
+        case 2:
+        cout<<"Enter bank account number :";
+        cin >>num;
+        for(int i=0;i<n;i++)
+        {
+            if(b[i].anum==num)
+            {
+                p++;
+                cout << "Enter the amount you want to withdraw :";
+                cin >> a;
+                b[i].withdraw(a);
+                break;
+            }
+        }
+        if(p==1)
+            cout<<"This account number has not available."<<endl;
+        p=0;
+        goto x;
+        break;
+
+        case 3:
+        cout<<"Enter bank account number :";
+        cin >>num;
+        for(int i=0;i<n;i++)
+        {
+            if(b[i].anum==num)
+            {
+                p++;
+                cout << "Your current amount is :"<<b[i].balance<<endl;
+                break;
+            }
+        }
+        if(p==1)
+            cout<<"This account number has not available."<<endl;
+        p=0;
+        goto x;
+        break;
+
+        case 4:
+        cout <<"Thank you !!";
+        break;
+
+        default :
+        cout <<"please enter valid choice .";
+        goto x;
+    }
+return 0;
 }
-
-/*Design a simple class BankAccount to represent a bank account. It should have
-the following:
-Attributes:
-o Account holder's name, account number, and balance.
-Methods:
-o deposit(amount): to add money to the account.
-o withdraw(amount): to deduct money from the account if sufficient balance
-exists. Otherwise, print an error message.
-o display_balance() to show the current balance.
-Requirements:
-o Demonstrate object-oriented principles: encapsulation and abstraction.
-o Test the class by creating multiple accounts and performing operations.*/
-
