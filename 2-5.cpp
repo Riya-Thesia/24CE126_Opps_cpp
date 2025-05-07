@@ -60,7 +60,7 @@ public:
 };
 
 int main() {
-    Loan loan1(101, "shreeja", 50000, 7.5, 36); // Creating a loan with details
+    Loan loan1(126, "Riya", 50000, 7.5, 36); // Creating a loan with details
 
     // Display loan details
     cout << "Loan Details:\n";
